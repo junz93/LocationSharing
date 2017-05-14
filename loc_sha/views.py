@@ -13,19 +13,24 @@ def index(request):
     global n
     global data
     if request.is_ajax():
-        if request.GET['type'] == 0:    # create a new group
+        # create a new group
+        if request.GET['type'] == "0":
             while n in data:
                 n = (n + 1) % M
             group = n
             n = (n + 1) % M
-            data[group] = list()
-        else:                           # join a group
+            dest = request.GET['dest']
+            data[group] = {'dest': dest, 'member': list()}
+        # join a group
+        else:
             group = int(request.GET['group'])
+            # group number is invalid
             if group not in data:
                 return JsonResponse(False, safe=False)
-        cid = len(data[group])      # client id (an index of array)
-        data[group].append([0, 0, request.GET['trans']])
-        return JsonResponse({'group': group, 'id': cid})
+            dest = data[group]['dest']
+        cid = len(data[group]['member'])      # client id (an index of array)
+        data[group]['member'].append([0, 0, request.GET['trans'], request.GET['name']])
+        return JsonResponse({'group': group, 'dest': dest, 'id': cid})
 
     return render(request, 'loc_sha/index.html')
 
@@ -33,9 +38,9 @@ def index(request):
 def msg(request):
     global n
     global data
-    group = request.GET['group']
-    cid = request.GET['id']
-    item = data[group][cid]
+    group = int(request.GET['group'])
+    cid = int(request.GET['id'])
+    item = data[group]['member'][cid]
     item[0] = request.GET['lat']
     item[1] = request.GET['lng']
-    return JsonResponse(data[group], safe=False)
+    return JsonResponse(data[group]['member'], safe=False)
