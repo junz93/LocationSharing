@@ -1,7 +1,9 @@
 var map;                // the map object
-var group = -1;         // group number
-var id = -1;            // client id
+var group;              // group number
+var id;                 // client id in a group
+var repeated_task;      // id of setInterval (the return value of setInterval() method)
 
+// load the map
 function initMap() {
     if(navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -17,31 +19,32 @@ function initMap() {
         });
     }
     else {
-        alert("Geolocation is not supported by this browser.")
+        alert("Geolocation is not supported by this browser.");
+        $("#part1").css("display", "none");
     }
 }
 
-function msgServer(position) {
-    var msg = {"group": group, "id": id, "lat": position.coords.latitude, "lng": position.coords.longitude};
-    // send the location data to server
-    $.get("/share/msg/", msg, function(data) {
-        if(data !== false) {
-            // data is an array of the information of group members
-            // an item of this array has the following structure:
-            // [latitude, longitude, transportation, name]
-            // TODO: display the above information of all group members on the map
+// send location to and receive locations of group members from server
+function msgServer() {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var msg = {"group": group, "id": id, "lat": position.coords.latitude, "lng": position.coords.longitude};
+        // send the location data to server
+        $.get("/share/msg/", msg, function(data) {
+            if(data !== false) {
+                // data is an array of the information of group members
+                // an item of this array has the following structure:
+                // [latitude, longitude, transportation, name]
+                // TODO: display the above information of all group members on the map
 
-        }
+            }
+        });
     });
 }
 
-// update the map every 2 seconds
-setInterval(function() {
-    if(group >= 0)
-        navigator.geolocation.getCurrentPosition(msgServer);
-}, 2000);
+
 
 $(document).ready(function() {
+    // create a new group
     $("#create").click(function() {
         var name = $("#name1").val();
         var dest = $("#dest").val();
@@ -54,9 +57,11 @@ $(document).ready(function() {
             $("#part2").css("display", "block");
             $("#i_group").text(group);
             $("#i_name").text(name);
+            repeated_task = setInterval(msgServer, 2000);
         });
     });
 
+    // join a group
     $("#join").click(function() {
         var name = $("#name2").val();
         var grp = $("#group").val();
@@ -73,14 +78,15 @@ $(document).ready(function() {
                 $("#part2").css("display", "block");
                 $("#i_group").text(group);
                 $("#i_name").text(name);
+                repeated_task = setInterval(msgServer, 2000);
             }
         });
     });
 
+    // exit a group
     $("#exit").click(function() {
         $.get("/share/exit/", {"group": group, "id": id}, function(data) {
-            group = -1;
-            id = -1;
+            clearInterval(repeated_task);
             $("#part1").css("display", "block");
             $("#part2").css("display", "none");
         });
