@@ -23,12 +23,15 @@ function initMap() {
 
 function msgServer(position) {
     var msg = {"group": group, "id": id, "lat": position.coords.latitude, "lng": position.coords.longitude};
-
+    // send the location data to server
     $.get("/share/msg/", msg, function(data) {
-        // data is an array of the information of group members
-        // an item of this array has the following structure:
-        // [latitude, longitude, transportation, name]
-        // we should display the above information of all group members on the map
+        if(data !== false) {
+            // data is an array of the information of group members
+            // an item of this array has the following structure:
+            // [latitude, longitude, transportation, name]
+            // TODO: display the above information of all group members on the map
+
+        }
     });
 }
 
@@ -47,8 +50,8 @@ $(document).ready(function() {
         $.get("/share/", {"type": 0, "name": name, "dest": dest, "trans": trans}, function(data) {
             group = data.group;
             id = data.id;
-            $("form").css("display", "none");
-            $("#ingroup").css("display", "block");
+            $("#part1").css("display", "none");
+            $("#part2").css("display", "block");
             $("#i_group").text(group);
             $("#i_name").text(name);
         });
@@ -66,8 +69,8 @@ $(document).ready(function() {
             else {
                 group = data.group;
                 id = data.id;
-                $("form").css("display", "none");
-                $("#ingroup").css("display", "block");
+                $("#part1").css("display", "none");
+                $("#part2").css("display", "block");
                 $("#i_group").text(group);
                 $("#i_name").text(name);
             }
@@ -75,6 +78,11 @@ $(document).ready(function() {
     });
 
     $("#exit").click(function() {
-
+        $.get("/share/exit/", {"group": group, "id": id}, function(data) {
+            group = -1;
+            id = -1;
+            $("#part1").css("display", "block");
+            $("#part2").css("display", "none");
+        });
     })
 });

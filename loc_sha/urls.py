@@ -6,5 +6,6 @@ app_name = 'loc_sha'
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^msg/$', views.msg, name='msg'),
+    url(r'^exit/$', views.exit, name='exit'),
 ]
 

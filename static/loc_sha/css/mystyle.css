@@ -1,12 +1,23 @@
+html, body {
+    height: 100%;
+}
+
 #map {
     height: 100%;
 }
+
 h3 {
     margin-top: 40px;
 }
-form {
+
+#part1 {
     margin: 0 20px;
 }
-html, body {
-    height: 100%;
+
+#part2 div {
+    font-size: 16px;
+}
+
+#part2 input[type=button] {
+    margin-top: 50px;
 }
