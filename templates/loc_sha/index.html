@@ -1,0 +1,56 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Location Sharing</title>
+    <link href="{% static 'loc_sha/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'loc_sha/css/mystyle.css' %}" rel="stylesheet">
+</head>
+
+<body>
+        <div class="col-md-3">
+            <form>
+                <h3>Create a new group</h3>
+                <div class="form-group">
+                    <label for="dest">Enter your destination:</label>
+                    <input type="text" id="dest" name="dest" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="trans1">Select your transportation:</label>
+                    <select id="trans1" name="trans1" class="form-control required">
+                        <option value=""></option>
+                        <option value="1">Walking</option>
+                        <option value="2">Driving</option>
+                        <option value="3">Cycling</option>
+                    </select>
+                </div>
+                <input type="button" id="create" name="create" value="Create" class="btn btn-primary">
+                <h3>Join a group</h3>
+                <div class="form-group">
+                    <label for="group">Enter your group number:</label>
+                    <input type="text" id="group" name="group" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="trans2">Select your transportation:</label>
+                    <select id="trans2" name="trans2" class="form-control required">
+                        <option value=""></option>
+                        <option value="1">Walking</option>
+                        <option value="2">Driving</option>
+                        <option value="3">Cycling</option>
+                    </select>
+                </div>
+                <input type="button" id="join" name="join" value="Join" class="btn btn-primary">
+            </form>
+        </div>
+        <div class="col-md-9" id="map"></div>
+
+    <script src="{% static 'loc_sha/js/jquery-3.1.1.min.js' %}" ></script>
+    <script src="{% static 'loc_sha/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'loc_sha/js/myscript.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3UJnSWM491Y3ys7aBh8btL8iE9JWn4V4&callback=initMap"
+            async defer></script>
+</body>
+</html>
