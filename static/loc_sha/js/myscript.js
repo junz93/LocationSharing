@@ -51,6 +51,7 @@ $(document).ready(function() {
         var trans = $("#trans1").val();
 
         $.get("/share/", {"type": 0, "name": name, "dest": dest, "trans": trans}, function(data) {
+            // data is an object containing 3 keys: "group", "dest", "id"
             group = data.group;
             id = data.id;
             $("#part1").css("display", "none");
@@ -72,6 +73,7 @@ $(document).ready(function() {
                 alert("The group number does not exist.");
             }
             else {
+                // data is an object containing 3 keys: "group", "dest", "id"
                 group = data.group;
                 id = data.id;
                 $("#part1").css("display", "none");
