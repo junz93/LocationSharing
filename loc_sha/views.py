@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+# from .tasks import t_exit
 
 # Create your views here.
 
@@ -54,6 +55,7 @@ def exit(request):
     global data
     group = int(request.GET['group'])
     cid = int(request.GET['id'])
+    # t_exit.delay(data, group, cid)
     data[group]['member'][cid] = None
     data[group]['num'] -= 1
     if data[group]['num'] == 0:
