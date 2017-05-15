@@ -42,7 +42,7 @@ function msgServer() {
     });
 }
 
-function showInfo(data) {
+function showInfo(data, name) {
     group = data.group;
     id = data.id;
     dest = data.dest;
@@ -63,7 +63,7 @@ $(document).ready(function() {
             "trans": $("#trans1").val()
         }, function(data) {
             // data is an object containing 3 keys: "group", "dest", "id"
-            showInfo(data);
+            showInfo(data, $("#name1").val());
         });
     });
 
@@ -80,7 +80,7 @@ $(document).ready(function() {
             }
             else {
                 // data is an object containing 3 keys: "group", "dest", "id"
-                showInfo(data);
+                showInfo(data, $("#name2").val());
             }
         });
     });
