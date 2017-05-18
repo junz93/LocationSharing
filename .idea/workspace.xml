@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4c5ce637-f414-42da-8bb9-5027535d5cbd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/loc_sha/js/myscript.js" afterPath="$PROJECT_DIR$/static/loc_sha/js/myscript.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -535,7 +534,14 @@
       <option name="project" value="LOCAL" />
       <updated>1495089102806</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="微调了js代码">
+      <created>1495090380123</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1495090380123</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -599,7 +605,8 @@
     <MESSAGE value="no comment" />
     <MESSAGE value="改写了部分JavaScript代码" />
     <MESSAGE value="开始使用MySQL数据库存储位置数据" />
-    <option name="LAST_COMMIT_MESSAGE" value="开始使用MySQL数据库存储位置数据" />
+    <MESSAGE value="微调了js代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="微调了js代码" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
