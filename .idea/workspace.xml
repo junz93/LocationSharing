@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4c5ce637-f414-42da-8bb9-5027535d5cbd" name="Default" comment="改写了部分JavaScript代码">
+    <list default="true" id="4c5ce637-f414-42da-8bb9-5027535d5cbd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LocationSharing/settings.py" afterPath="$PROJECT_DIR$/LocationSharing/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loc_sha/models.py" afterPath="$PROJECT_DIR$/loc_sha/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loc_sha/views.py" afterPath="$PROJECT_DIR$/loc_sha/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/loc_sha/js/myscript.js" afterPath="$PROJECT_DIR$/static/loc_sha/js/myscript.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -58,8 +55,8 @@
       <file leaf-file-name="myscript.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/loc_sha/js/myscript.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="126" column="11" lean-forward="true" selection-start-line="126" selection-start-column="11" selection-end-line="126" selection-end-column="11" />
+            <state relative-caret-position="714">
+              <caret line="76" column="16" lean-forward="false" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -531,7 +528,14 @@
       <option name="project" value="LOCAL" />
       <updated>1494827788228</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="开始使用MySQL数据库存储位置数据">
+      <created>1495089102806</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1495089102806</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -594,7 +598,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="no comment" />
     <MESSAGE value="改写了部分JavaScript代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="改写了部分JavaScript代码" />
+    <MESSAGE value="开始使用MySQL数据库存储位置数据" />
+    <option name="LAST_COMMIT_MESSAGE" value="开始使用MySQL数据库存储位置数据" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -956,8 +961,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/loc_sha/js/myscript.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="126" column="11" lean-forward="true" selection-start-line="126" selection-start-column="11" selection-end-line="126" selection-end-column="11" />
+        <state relative-caret-position="714">
+          <caret line="76" column="16" lean-forward="false" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
           <folding />
         </state>
       </provider>

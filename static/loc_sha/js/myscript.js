@@ -74,7 +74,8 @@ function showInfo(data, name) {
     $("#part2").css("display", "block");
     $("#i_group").text(group);
     $("#i_name").text(name);
-    repeated_task = setInterval(msgServer, 2000);
+    msgServer();
+    repeated_task = setInterval(msgServer, 3000);
 }
 
 $(document).ready(function() {
