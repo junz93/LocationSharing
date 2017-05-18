@@ -1,63 +1,54 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from .models import Group, Member
 # from .tasks import t_exit
 
 # Create your views here.
 
-M = 10**8
-n = 0
-data = dict()
-
 
 def index(request):
-    global M
-    global n
-    global data
     if request.is_ajax():
+        name = request.GET['name']
+        trans = request.GET['trans']
         # create a new group
         if request.GET['type'] == "0":
-            while n in data:
-                n = (n + 1) % M
-            group = n
-            n = (n + 1) % M
             dest = request.GET['dest']
-            data[group] = {'dest': dest, 'member': list(), 'num': 0}
+            g = Group.objects.create(dest=dest, num=1)      # add a new group
         # join a group
         else:
-            group = int(request.GET['group'])
-            # group number is invalid
-            if group not in data:
+            gid = int(request.GET['group'])
+            # group number does not exist
+            if not Group.objects.filter(id=gid).exists():
                 return JsonResponse(False, safe=False)
-            dest = data[group]['dest']
-        cid = len(data[group]['member'])      # client id (an index of array)
-        data[group]['member'].append([0, 0, request.GET['trans'], request.GET['name']])
-        data[group]['num'] += 1
-        return JsonResponse({'group': group, 'dest': dest, 'id': cid})
+            g = Group.objects.get(id=gid)
+            g.num += 1
+            g.save()
+        m = Member.objects.create(name=name, group=g, trans=trans)  # add a new member belonging to the group
+        return JsonResponse({'group': g.id, 'dest': g.dest, 'id': m.id})
 
     return render(request, 'loc_sha/index.html')
 
 
 def msg(request):
-    global data
-    group = int(request.GET['group'])
-    if group not in data:
+    gid = int(request.GET['group'])
+    mid = int(request.GET['id'])
+    if not Member.objects.filter(id=mid).exists():
         return JsonResponse(False, safe=False)
-    cid = int(request.GET['id'])
-    item = data[group]['member'][cid]
-    if item is None:
-        return JsonResponse(False, safe=False)
-    item[0] = request.GET['lat']
-    item[1] = request.GET['lng']
-    return JsonResponse(data[group]['member'], safe=False)
+    Member.objects.filter(id=mid).update(lat=request.GET['lat'], lng=request.GET['lng'])
+    members = Member.objects.filter(group__id=gid).exclude(id=mid).values('lat', 'lng', 'name', 'trans')
+    return JsonResponse(list(members), safe=False)
+    # return JsonResponse([[m.lat, m.lng, m.name, m.trans] for m in members], safe=False)
 
 
 def exit(request):
-    global data
-    group = int(request.GET['group'])
-    cid = int(request.GET['id'])
+    gid = int(request.GET['group'])
+    mid = int(request.GET['id'])
     # t_exit.delay(data, group, cid)
-    data[group]['member'][cid] = None
-    data[group]['num'] -= 1
-    if data[group]['num'] == 0:
-        del data[group]
+    Member.objects.get(id=mid).delete()
+    g = Group.objects.get(id=gid)
+    if g.num == 1:
+        Group.objects.get(id=gid).delete()
+    else:
+        g.num -= 1
+        g.save()
     return JsonResponse(True, safe=False)

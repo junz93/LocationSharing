@@ -2,6 +2,8 @@ var map;                // the map object
 var group;              // group number
 var id;                 // client id in a group
 var dest;
+var own_marker;
+var markers = [];
 var repeated_task;      // id of setInterval (the return value of setInterval() method)
 
 // load the map
@@ -13,10 +15,10 @@ function initMap() {
                 center: pos,
                 zoom: 12
             });
-            var marker = new google.maps.Marker({
-                position: pos,
-                map: map
-            });
+            // var marker = new google.maps.Marker({
+            //     position: pos,
+            //     map: map
+            // });
         });
     }
     else {
@@ -29,14 +31,36 @@ function initMap() {
 function msgServer() {
     navigator.geolocation.getCurrentPosition(function(position) {
         var msg = {"group": group, "id": id, "lat": position.coords.latitude, "lng": position.coords.longitude};
+        if(own_marker === undefined) {
+            own_marker = new google.maps.Marker({
+                position: {lat: position.coords.latitude, lng: position.coords.longitude},
+                icon: "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=Y|3FE31A",
+                // icon: "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569",
+                // label: "You",
+                map: map
+            });
+        }
+        else {
+            own_marker.setPosition({lat: position.coords.latitude, lng: position.coords.longitude});
+        }
         // send the location data to server
         $.get("/share/msg/", msg, function(data) {
             if(data !== false) {
-                // data is an array of the information of group members
-                // an item of this array has the following structure:
-                // [latitude, longitude, transportation, name]
+                // data is an array of objects storing the information of group members
+                // each object has 4 keys: "lat", "lng", "name", "trans"
                 // TODO: display the above information of all group members on the map
-
+                for(var i = 0; i < markers.length; i++) {
+                    markers[i].setMap(null);
+                }
+                markers = [];
+                for(i = 0; i < data.length; i++) {
+                    markers.push(new google.maps.Marker({
+                        position: {lat: data[i]["lat"], lng: data[i]["lng"]},
+                        icon: "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569",
+                        map: map
+                    })
+                    );
+                }
             }
         });
     });
@@ -92,6 +116,12 @@ $(document).ready(function() {
             "id": id
         }, function(data) {
             clearInterval(repeated_task);
+            own_marker.setMap(null);
+            own_marker = undefined;
+            for(var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+            }
+            markers = [];
             $("#part1").css("display", "block");
             $("#part2").css("display", "none");
         });
