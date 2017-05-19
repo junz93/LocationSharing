@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import Group, Member
+# from .models import Group, Member
 # from .tasks import t_exit
 
 # Create your views here.
