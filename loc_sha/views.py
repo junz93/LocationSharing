@@ -19,7 +19,7 @@ def index(request):
             gid = randrange(10**7)      # generate a random group id
             while Group.objects.filter(id=gid):
                 gid = randrange(10**7)
-            g = Group.create(id=gid, num=1)      # add a new group
+            g = Group.create(id=gid, dest=dest, num=1)      # add a new group
         # join an existing group
         else:
             gid = int(request.GET['group'])

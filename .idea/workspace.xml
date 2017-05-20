@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4c5ce637-f414-42da-8bb9-5027535d5cbd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loc_sha/cassa_models.py" afterPath="$PROJECT_DIR$/loc_sha/cassa_models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/loc_sha/views.py" afterPath="$PROJECT_DIR$/loc_sha/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,7 +28,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cassa_models.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cassa_models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/loc_sha/cassa_models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="147">
@@ -40,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/loc_sha/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="28" column="44" lean-forward="false" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
+            <state relative-caret-position="126">
+              <caret line="21" column="48" lean-forward="false" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -130,8 +130,8 @@
         <option value="$PROJECT_DIR$/loc_sha/models.py" />
         <option value="$PROJECT_DIR$/loc_sha/urls.py" />
         <option value="$PROJECT_DIR$/static/loc_sha/js/myscript.js" />
-        <option value="$PROJECT_DIR$/loc_sha/views.py" />
         <option value="$PROJECT_DIR$/loc_sha/cassa_models.py" />
+        <option value="$PROJECT_DIR$/loc_sha/views.py" />
       </list>
     </option>
   </component>
@@ -532,7 +532,14 @@
       <option name="project" value="LOCAL" />
       <updated>1495315501325</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="修复了views.py的bug">
+      <created>1495316176344</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1495316176344</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -599,7 +606,8 @@
     <MESSAGE value="微调了js代码" />
     <MESSAGE value="no comment" />
     <MESSAGE value="改用Cassandra数据库" />
-    <option name="LAST_COMMIT_MESSAGE" value="改用Cassandra数据库" />
+    <MESSAGE value="修复了views.py的bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复了views.py的bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -912,16 +920,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/loc_sha/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="28" column="44" lean-forward="false" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/loc_sha/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -944,6 +942,16 @@
           <caret line="7" column="25" lean-forward="false" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loc_sha/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="21" column="48" lean-forward="false" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
