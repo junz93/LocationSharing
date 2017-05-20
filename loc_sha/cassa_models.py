@@ -5,6 +5,7 @@ from cassandra.cqlengine import columns
 
 class Group(Model):
     id = columns.Integer(primary_key=True)
+    dest = columns.Text()
     num = columns.Integer()
 
 
