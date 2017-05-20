@@ -11,8 +11,8 @@ if os.getenv('CQLENG_ALLOW_SCHEMA_MANAGEMENT') is None:
     keyspaces = cluster.metadata.keyspaces
     if 'location' not in keyspaces:
         create_keyspace_simple('location', replication_factor=2)
-    tables = keyspaces['location'].tables
-    if 'group' not in tables:
-        sync_table(Group)
-    if 'member' not in tables:
-        sync_table(Member)
+        tables = keyspaces['location'].tables
+        if 'group' not in tables:
+            sync_table(Group)
+        if 'member' not in tables:
+            sync_table(Member)
