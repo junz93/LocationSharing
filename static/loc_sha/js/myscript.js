@@ -34,7 +34,7 @@ function msgServer() {
         if(own_marker === undefined) {
             own_marker = new google.maps.Marker({
                 position: {lat: position.coords.latitude, lng: position.coords.longitude},
-                icon: "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=Y|3FE31A",
+                icon: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=Y|3FE31A",
                 // icon: "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569",
                 // label: "You",
                 map: map
@@ -56,7 +56,7 @@ function msgServer() {
                 for(i = 0; i < data.length; i++) {
                     markers.push(new google.maps.Marker({
                         position: {lat: data[i]["lat"], lng: data[i]["lng"]},
-                        icon: "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569",
+                        icon: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569",
                         map: map
                     })
                     );
