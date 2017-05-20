@@ -1,6 +1,6 @@
 var map;                // the map object
-var group;              // group number
-var id;                 // client id in a group
+var group;              // group id (a number)
+var id;                 // member id (a string)
 var dest;
 var own_marker;
 var markers = [];
@@ -47,7 +47,7 @@ function msgServer() {
         $.get("/share/msg/", msg, function(data) {
             if(data !== false) {
                 // data is an array of objects storing the information of group members
-                // each object has 4 keys: "lat", "lng", "name", "trans"
+                // each object has 3 keys: "lat", "lng", "name"
                 // TODO: display the above information of all group members on the map
                 for(var i = 0; i < markers.length; i++) {
                     markers[i].setMap(null);
@@ -66,6 +66,7 @@ function msgServer() {
     });
 }
 
+// display information on the page and set a interval task exchanging info with server
 function showInfo(data, name) {
     group = data.group;
     id = data.id;
@@ -85,7 +86,7 @@ $(document).ready(function() {
             "type": 0, 
             "name": $("#name1").val(), 
             "dest": $("#dest").val(), 
-            "trans": $("#trans1").val()
+            // "trans": $("#trans1").val()
         }, function(data) {
             // data is an object containing 3 keys: "group", "dest", "id"
             showInfo(data, $("#name1").val());
@@ -98,7 +99,7 @@ $(document).ready(function() {
             "type": 1, 
             "name": $("#name2").val(), 
             "group": $("#group").val(), 
-            "trans": $("#trans2").val()
+            // "trans": $("#trans2").val()
         }, function(data) {
             if(data === false) {
                 alert("The group number does not exist.");
@@ -112,7 +113,7 @@ $(document).ready(function() {
 
     // exit a group
     $("#exit").click(function() {
-        $.get("/share/exit/", {
+        $.get("/share/stop/", {
             "group": group, 
             "id": id
         }, function(data) {
