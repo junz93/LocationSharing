@@ -5,7 +5,7 @@ from .cassa_models import Group, Member
 import os
 
 if os.getenv('CQLENG_ALLOW_SCHEMA_MANAGEMENT') is None:
-    os.putenv('CQLENG_ALLOW_SCHEMA_MANAGEMENT', '1')
+    os.environ['CQLENG_ALLOW_SCHEMA_MANAGEMENT'] = '1'
     connection.setup(['172.31.4.92'], 'location')
     cluster = connection.cluster
     keyspaces = cluster.metadata.keyspaces
