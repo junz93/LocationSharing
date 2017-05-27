@@ -35,7 +35,7 @@ function msgServer() {
             own_marker = new google.maps.Marker({
                 position: {lat: position.coords.latitude, lng: position.coords.longitude},
                 icon: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=Y|3FE31A",
-		label: {text: "You"},
+		        label: {text: "You"},
                 map: map
             });
         }
