@@ -35,7 +35,7 @@ function msgServer() {
             own_marker = new google.maps.Marker({
                 position: {lat: position.coords.latitude, lng: position.coords.longitude},
                 icon: {
-                    labelOrigin: new google.maps.Point(19-3*("You".length), -10),
+                    labelOrigin: new google.maps.Point(19-3*("Test1231".length), -10),
                     url: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=Y|3FE31A"
                 },
                 label: {
