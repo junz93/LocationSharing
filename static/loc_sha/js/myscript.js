@@ -40,7 +40,7 @@ function msgServer() {
                 },
                 label: {
                     fontSize: "18px",
-                    // fontFamily: "Consolas",
+                    fontFamily: "Consolas",
                     text: "TestTest"
                 },
                 map: map
