@@ -40,7 +40,7 @@ function msgServer() {
                 },
                 label: {
                     fontSize: "18px",
-                    text: "You"
+                    text: "Test1231"
                 },
                 map: map
             });
