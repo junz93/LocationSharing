@@ -42,7 +42,7 @@ function msgServer() {
                 label: {
                     fontSize: "18px",
                     fontFamily: "Consolas",
-                    text: "TestTest"
+                    text: "TestTestjio23342"
                 },
                 map: map
             });
