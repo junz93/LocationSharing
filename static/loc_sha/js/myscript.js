@@ -39,7 +39,7 @@ function msgServer() {
                     url: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=Y|3FE31A"
                 },
                 label: {
-                    fontSize: 18,
+                    fontSize: "18",
                     text: "You"
                 },
                 map: map
