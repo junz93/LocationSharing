@@ -6,7 +6,7 @@ import os
 
 if os.getenv('CQLENG_ALLOW_SCHEMA_MANAGEMENT') is None:
     os.environ['CQLENG_ALLOW_SCHEMA_MANAGEMENT'] = '1'
-    connection.setup(['172.31.4.92'], 'location')
+    connection.setup(['172.31.4.92', '172.31.13.241'], 'location')
     cluster = connection.cluster
     keyspaces = cluster.metadata.keyspaces
     if 'location' not in keyspaces:
