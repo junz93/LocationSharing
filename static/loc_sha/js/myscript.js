@@ -64,7 +64,9 @@ function msgServer() {
                         position: {lat: data[i]["lat"], lng: data[i]["lng"]},
                         icon: {
                             labelOrigin: new google.maps.Point(10, -10),
-                            url: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569"
+                            // url: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|FE7569",
+                            url: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld="
+                                + data[i]["name"][0].toUpperCase() + "|FE7569"
                         },
                         label: {
                             fontSize: "18px",
