@@ -22,9 +22,8 @@ def index(request):
             g = Group.create(id=gid, dest_lat=dest_lat, dest_lng=dest_lng, num=1)      # add a new group
         # join an existing group
         else:
-            gid = int(request.GET['group'])
-            # group number does not exist
-            if not Group.objects.filter(id=gid):
+            gid = request.GET['group']
+            if not gid.isnumeric() or not Group.objects.filter(id=gid):
                 return JsonResponse(False, safe=False)
             # increment the number of members in the group
             g = Group.objects.get(id=gid)
