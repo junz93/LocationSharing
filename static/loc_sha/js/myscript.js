@@ -34,12 +34,11 @@ function initMap() {
                     position: places[0].geometry.location,
                     icon: {
                         labelOrigin: new google.maps.Point(10, -10),
-                        url: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=D|333BFF"
+                        url: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=D|656BFC"
                     },
                     label: {
                         fontSize: "18px",
                         fontFamily: "Consolas",
-                        text: "Destination"
                     },
                     title: places[0].name,
                     map: map
