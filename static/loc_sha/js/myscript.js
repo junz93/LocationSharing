@@ -39,6 +39,7 @@ function initMap() {
                     title: places[0].name,
                     map: map
                 });
+                var bounds = new google.maps.LatLngBounds();
                 if (places[0].geometry.viewport) {
                     bounds.union(place.geometry.viewport);
                 }
