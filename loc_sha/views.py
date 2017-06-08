@@ -19,7 +19,7 @@ def index(request):
             gid = randrange(10**7)      # generate a random group id
             while Group.objects.filter(id=gid):
                 gid = randrange(10**7)
-            g = Group.create(id=gid, dest=dest, num=1)      # add a new group
+            g = Group.create(id=gid, num=1)      # add a new group
         # join an existing group
         else:
             gid = int(request.GET['group'])
@@ -32,7 +32,7 @@ def index(request):
             g.save()
 
         m = Member.create(name=name, group_id=gid)  # add a new member belonging to the group
-        return JsonResponse({'group': g.id, 'dest': g.dest, 'id': m.id.hex})
+        return JsonResponse({'group': g.id, 'dest_lat': g.dest_lat, 'dest_lng': g.dest_lng, 'id': m.id.hex})
 
     return render(request, 'loc_sha/index.html')
 

@@ -1,7 +1,6 @@
 var map;                // the map object
 var group;              // group id (a number)
 var id;                 // member id (a string)
-var dest;               // coordinator of the destination
 var own_marker;
 var dest_marker;
 var markers = [];
@@ -117,11 +116,11 @@ function msgServer() {
     });
 }
 
-// display information on the page and set a interval task exchanging info with server
+// display information on the page and set a interval task exchanging information with server
 function showInfo(data, name) {
+    // data is an object containing 4 keys: "group", "dest_lat", "dest_lng", "id"
     group = data.group;
     id = data.id;
-    dest = data.dest;
     $("#part1").css("display", "none");
     $("#part2").css("display", "block");
     $("#i_group").text(group);
@@ -136,10 +135,9 @@ $(document).ready(function() {
         $.get("/share/", {
             "type": 0, 
             "name": $("#name1").val(), 
-            "dest": $("#dest").val()
             // "trans": $("#trans1").val()
         }, function(data) {
-            // data is an object containing 3 keys: "group", "dest", "id"
+
             showInfo(data, $("#name1").val());
         });
     });
@@ -156,7 +154,6 @@ $(document).ready(function() {
                 alert("The group number does not exist.");
             }
             else {
-                // data is an object containing 3 keys: "group", "dest", "id"
                 showInfo(data, $("#name2").val());
             }
         });
