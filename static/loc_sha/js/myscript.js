@@ -1,8 +1,9 @@
 var map;                // the map object
 var group;              // group id (a number)
 var id;                 // member id (a string)
-var dest;
+var dest;               // coordinator of the destination
 var own_marker;
+var dest_marker;
 var markers = [];
 var repeated_task;      // id of setInterval (the return value of setInterval() method)
 
@@ -15,10 +16,44 @@ function initMap() {
                 center: pos,
                 zoom: 12
             });
-            // var marker = new google.maps.Marker({
-            //     position: pos,
-            //     map: map
-            // });
+
+            var input = document.getElementById('dest');
+            var searchBox = new google.maps.places.SearchBox(input);
+            map.addListener('bounds_changed', function() {
+                searchBox.setBounds(map.getBounds());
+            });
+            searchBox.addListener('places_changed', function() {
+                var places = searchBox.getPlaces();
+                if (places.length === 0) {
+                    return;
+                }
+                if(dest_marker !== undefined) {
+                    dest_marker.setMap(null);
+                }
+                // Create a marker for the place selected as the destination
+                dest_marker = new google.maps.Marker({
+                    position: places[0].geometry.location,
+                    icon: {
+                        labelOrigin: new google.maps.Point(10, -10),
+                        url: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=D|333BFF"
+                    },
+                    label: {
+                        fontSize: "18px",
+                        fontFamily: "Consolas",
+                        text: "Destination"
+                    },
+                    title: places[0].name,
+                    map: map
+                });
+                if (places[0].geometry.viewport) {
+                    bounds.union(place.geometry.viewport);
+                }
+                else {
+                    bounds.extend(place.geometry.location);
+                }
+
+                map.fitBounds(bounds);
+            });
         });
     }
     else {
@@ -101,7 +136,7 @@ $(document).ready(function() {
         $.get("/share/", {
             "type": 0, 
             "name": $("#name1").val(), 
-            "dest": $("#dest").val(), 
+            "dest": $("#dest").val()
             // "trans": $("#trans1").val()
         }, function(data) {
             // data is an object containing 3 keys: "group", "dest", "id"
@@ -114,7 +149,7 @@ $(document).ready(function() {
         $.get("/share/", {
             "type": 1, 
             "name": $("#name2").val(), 
-            "group": $("#group").val(), 
+            "group": $("#group").val()
             // "trans": $("#trans2").val()
         }, function(data) {
             if(data === false) {
