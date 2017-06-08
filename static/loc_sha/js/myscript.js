@@ -13,7 +13,7 @@ function initMap() {
             var pos = {lat: position.coords.latitude, lng: position.coords.longitude};
             map = new google.maps.Map(document.getElementById("map"), {
                 center: pos,
-                zoom: 12
+                zoom: 14
             });
 
             var input = document.getElementById('dest');
@@ -34,11 +34,7 @@ function initMap() {
                     position: places[0].geometry.location,
                     icon: {
                         labelOrigin: new google.maps.Point(10, -10),
-                        url: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=D|656BFC"
-                    },
-                    label: {
-                        fontSize: "18px",
-                        fontFamily: "Consolas",
+                        url: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=D|6593EC"
                     },
                     title: places[0].name,
                     map: map
@@ -126,17 +122,31 @@ function showInfo(data, name) {
     $("#i_name").text(name);
     msgServer();
     repeated_task = setInterval(msgServer, 3000);
+    if(dest_marker === undefined) {
+        dest_marker = new google.maps.Marker({
+            position: {lat: data.dest_lat, lng: data.dest_lng},
+            icon: {
+                labelOrigin: new google.maps.Point(10, -10),
+                url: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=D|6593EC"
+            },
+            map: map
+        });
+    }
 }
 
 $(document).ready(function() {
     // create a new group
     $("#create").click(function() {
+        if(dest_marker === undefined) {
+            alert("Please set a destination!");
+            return;
+        }
         $.get("/share/", {
             "type": 0, 
             "name": $("#name1").val(), 
-            // "trans": $("#trans1").val()
+            "dest_lat": dest_marker.getPosition().lat(),
+            "dest_lng": dest_marker.getPosition().lng()
         }, function(data) {
-
             showInfo(data, $("#name1").val());
         });
     });

@@ -12,14 +12,14 @@ import uuid
 def index(request):
     if request.is_ajax():
         name = request.GET['name']
-        # trans = request.GET['trans']
         # create a new group
         if request.GET['type'] == "0":
-            dest = request.GET['dest']
+            dest_lat = request.GET['dest_lat']
+            dest_lng = request.GET['dest_lng']
             gid = randrange(10**7)      # generate a random group id
             while Group.objects.filter(id=gid):
                 gid = randrange(10**7)
-            g = Group.create(id=gid, num=1)      # add a new group
+            g = Group.create(id=gid, dest_lat=dest_lat, dest_lng=dest_lng, num=1)      # add a new group
         # join an existing group
         else:
             gid = int(request.GET['group'])
