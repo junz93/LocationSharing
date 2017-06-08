@@ -138,7 +138,7 @@ function showInfo(data, name) {
 $(document).ready(function() {
     // create a new group
     $("#create").click(function() {
-        if($("#name1").val === "") {
+        if($("#name1").val() === "") {
             alert("Please enter your name.");
             return;
         }
@@ -158,11 +158,11 @@ $(document).ready(function() {
 
     // join a group
     $("#join").click(function() {
-        if($("#name2").val === "") {
+        if($("#name2").val() === "") {
             alert("Please enter your name.");
             return;
         }
-        if($("#group").val === "") {
+        if($("#group").val() === "") {
             alert("Please enter the group number.");
             return;
         }
