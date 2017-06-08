@@ -41,10 +41,10 @@ function initMap() {
                 });
                 var bounds = new google.maps.LatLngBounds();
                 if (places[0].geometry.viewport) {
-                    bounds.union(place.geometry.viewport);
+                    bounds.union(places[0].geometry.viewport);
                 }
                 else {
-                    bounds.extend(place.geometry.location);
+                    bounds.extend(places[0].geometry.location);
                 }
 
                 map.fitBounds(bounds);
