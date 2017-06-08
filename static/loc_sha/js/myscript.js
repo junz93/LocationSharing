@@ -138,8 +138,12 @@ function showInfo(data, name) {
 $(document).ready(function() {
     // create a new group
     $("#create").click(function() {
+        if($("#name1").val === "") {
+            alert("Please enter your name.");
+            return;
+        }
         if(dest_marker === undefined) {
-            alert("Please set a destination!");
+            alert("Please set a destination.");
             return;
         }
         $.get("/share/", {
@@ -154,6 +158,14 @@ $(document).ready(function() {
 
     // join a group
     $("#join").click(function() {
+        if($("#name2").val === "") {
+            alert("Please enter your name.");
+            return;
+        }
+        if($("#group").val === "") {
+            alert("Please enter the group number.");
+            return;
+        }
         $.get("/share/", {
             "type": 1, 
             "name": $("#name2").val(), 
@@ -177,7 +189,9 @@ $(document).ready(function() {
         }, function(data) {
             clearInterval(repeated_task);
             own_marker.setMap(null);
+            dest_marker.setMap(null);
             own_marker = undefined;
+            dest_marker = undefined;
             for(var i = 0; i < markers.length; i++) {
                 markers[i].setMap(null);
             }
