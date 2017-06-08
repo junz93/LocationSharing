@@ -36,7 +36,11 @@ function initMap() {
                         labelOrigin: new google.maps.Point(10, -10),
                         url: "https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=D|6593EC"
                     },
-                    title: places[0].name,
+                    label: {
+                        fontSize: "18px",
+                        fontFamily: "Consolas",
+                        text: "Destination"
+                    },
                     map: map
                 });
                 var bounds = new google.maps.LatLngBounds();
