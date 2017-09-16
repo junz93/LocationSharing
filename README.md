@@ -1,4 +1,5 @@
 # LocationSharing
+
 A location sharing web application based on Google Maps
 
 ## Dependencies
